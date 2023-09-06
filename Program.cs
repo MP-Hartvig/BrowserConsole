@@ -3,7 +3,7 @@
 GuiMenuLoop gui = new GuiMenuLoop();
 HttpClient client = new HttpClient();
 
-gui.MenuLoop(client);
+await gui.MenuLoop(client);
 
 
 //bool menuBool = true;

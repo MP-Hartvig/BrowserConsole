@@ -5,7 +5,7 @@
         ResponseMessage rm = new ResponseMessage();
         RegexReplacer rr = new RegexReplacer();
 
-        public async void MenuLoop(HttpClient client)
+        public async Task MenuLoop(HttpClient client)
         {
             bool menuBool = true;
 
@@ -21,7 +21,8 @@
                     {
                         var response = await rm.GetHttpResponse(client, input);
                         var responseBody = await rm.GetHttpResponseBody(response);
-                        await Console.Out.WriteLineAsync(rr.RemoveHtmlTags(responseBody));
+                        var result = rr.RemoveHtmlTags(responseBody);
+                        Console.WriteLine(result);
                     }
                 }
             }
