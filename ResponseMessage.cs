@@ -17,24 +17,9 @@ namespace BrowserConsole
                 response.EnsureSuccessStatusCode();
                 return response;
             }
-            catch (InvalidOperationException e)
+            catch (Exception e)
             {
-                ep.PrintExceptions(e.Message);
-                return emptyResponse;
-            }
-            catch (HttpRequestException e)
-            {
-                ep.PrintExceptions(e.Message);
-                return emptyResponse;
-            }
-            catch (TaskCanceledException e)
-            {
-                ep.PrintExceptions(e.Message);
-                return emptyResponse;
-            }
-            catch (UriFormatException e)
-            {
-                ep.PrintExceptions(e.Message);
+                ep.PrintExceptions(e);
                 return emptyResponse;
             }
         }

@@ -2,10 +2,10 @@
 {
     internal class ExceptionPrinter
     {
-        public void PrintExceptions(string message)
+        public void PrintExceptions(Exception ex)
         {
             Console.WriteLine("\nException Caught!\n");
-            Console.WriteLine("Message: \n{0}", message);
+            Console.WriteLine("Message: \n{0}", ex.InnerException == null ? ex.Message : ex.InnerException.Message);
         }
     }
 }

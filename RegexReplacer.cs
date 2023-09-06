@@ -1,10 +1,13 @@
-﻿using BrowserConsole.Interfaces;
+﻿using BrowserConsole.Gui;
+using BrowserConsole.Interfaces;
 using System.Text.RegularExpressions;
 
 namespace BrowserConsole
 {
     internal class RegexReplacer : IRegexReplacer
     {
+        ExceptionPrinter ep = new ExceptionPrinter();
+
         public string RemoveHtmlTags(string responseBody)
         {
             string result = "";
@@ -14,22 +17,9 @@ namespace BrowserConsole
                 result = Regex.Replace(responseBody, @"<[^>]*>", string.Empty);
                 return result;
             }
-            catch (ArgumentNullException e)
+            catch (Exception e)
             {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-                return result;
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
-                return result;
-            }
-            catch (RegexMatchTimeoutException e)
-            {
-                Console.WriteLine("\nException Caught!");
-                Console.WriteLine("Message :{0} ", e.Message);
+                ep.PrintExceptions(e);
                 return result;
             }
         }
